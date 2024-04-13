@@ -1,0 +1,94 @@
+_schema-version: "3.1"
+ID: Sample_prjct
+description: A simple CAP project.
+version: 1.0.0
+modules:
+  - name: Sample_prjct-srv
+    type: nodejs
+    path: gen/srv
+    requires:
+      - name: uaa_Sample_prjct
+      - name: Sample_prjct-db
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    parameters:
+      buildpack: nodejs_buildpack
+      readiness-health-check-http-endpoint: /health
+      readiness-health-check-type: http
+    build-parameters:
+      builder: npm
+  - name: Sample_prjct-db-deployer
+    type: hdb
+    path: gen/db
+    requires:
+      - name: Sample_prjct-db
+    parameters:
+      buildpack: nodejs_buildpack
+  - name: Sample_prjct-destination-content
+    type: com.sap.application.content
+    requires:
+      - name: Sample_prjct-destination-service
+        parameters:
+          content-target: true
+      - name: Sample_prjct_html_repo_host
+        parameters:
+          service-key:
+            name: Sample_prjct_html_repo_host-key
+      - name: uaa_Sample_prjct
+        parameters:
+          service-key:
+            name: uaa_Sample_prjct-key
+    parameters:
+      content:
+        instance:
+          destinations:
+            - Name: managed_approuter_Sample_prjct_html_repo_host
+              ServiceInstanceName: Sample_prjct-html5-app-host-service
+              ServiceKeyName: Sample_prjct_html_repo_host-key
+              sap.cloud.service: managed_approuter
+            - Authentication: OAuth2UserTokenExchange
+              Name: managed_approuter_uaa_Sample_prjct
+              ServiceInstanceName: Sample_prjct-xsuaa-service
+              ServiceKeyName: uaa_Sample_prjct-key
+              sap.cloud.service: managed_approuter
+          existing_destinations_policy: ignore
+    build-parameters:
+      no-source: true
+resources:
+  - name: Sample_prjct-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: Sample_prjct-destination-service
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: true
+        version: 1.0.0
+      service: destination
+      service-name: Sample_prjct-destination-service
+      service-plan: lite
+  - name: Sample_prjct_html_repo_host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-name: Sample_prjct-html5-app-host-service
+      service-plan: app-host
+  - name: uaa_Sample_prjct
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-name: Sample_prjct-xsuaa-service
+      service-plan: application
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
