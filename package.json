@@ -21,8 +21,20 @@
   },
   "cds": {
     "requires": {
-      "db": "hana",
-      "auth":"xsuaa"
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "subhash@sap.com": {
+            "password": "subhash",
+            "id": "subhash@sap.com",
+            "roles": [
+              "subhash"
+            ]
+          }       
+        }
+      } 
     }
   }
+  
 }
+
