@@ -58,19 +58,13 @@
                             id="idAuthorFilterLabel"
                             text="{i18n>Authorlable}"
                         />
-                        <Input
-                            id="idAuthorFilterValue"
-                            value=""
-                            placeholder="Filter by author"
-                        />
-                        <!-- <MultiInput
+                        <MultiInput
                             placeholder="Enter Multiple Inputs"
                             width="100%"
                             showClearIcon="true"
                             id="idAuthorValue"
                             showValueHelp="false"
-                        /> -->
-                            
+                        />
                     </VBox>
                     <VBox
                         id="idBookNameFilter"
@@ -80,18 +74,14 @@
                             id="idBookNameFilterLabel"
                             text="{i18n>BookName}"
                         />
-                        <Input
-                            id="idBookNameFilterValue"
-                            value=""
-                            placeholder="Filter by book name"
-                        />
-                           <!-- <MultiInput
+
+                        <MultiInput
                             placeholder="Enter Multiple Inputs"
                             width="100%"
                             showClearIcon="true"
                             id="idBooksNameValue"
                             showValueHelp="false"
-                        /> -->
+                        />
                     </VBox>
                     <VBox
                         id="idNosoldbooksFilter"
@@ -101,18 +91,14 @@
                             id="idNosoldbooksFilterLabel"
                             text="{i18n>NoofSoldBooks}"
                         />
-                        <Input
-                            id="idNosoldbooksFilterValue"
-                            value=""
-                            placeholder="Filter by no.of books sold"
-                        />
-                          <!-- <MultiInput
+
+                        <MultiInput
                             placeholder="Enter Multiple Inputs"
                             width="100%"
                             showClearIcon="true"
                             id="idNoOfBooksSoldValue"
                             showValueHelp="false"
-                        /> -->
+                        />
                     </VBox>
                     <VBox
                         id="iPhoneFilter"
@@ -122,18 +108,14 @@
                             id="iPhoneFilterLabel"
                             text="{i18n>Phonenumber}"
                         />
-                        <Input
-                            id="iPhoneFilterValue"
-                            value=""
-                            placeholder="Filter by phone"
-                        />
-                          <!-- <MultiInput
+
+                        <MultiInput
                             placeholder="Enter Multiple Inputs"
                             width="100%"
                             showClearIcon="true"
                             id="idPhoneFilterValue"
                             showValueHelp="false"
-                        /> -->
+                        />
                     </VBox>
                     <VBox
                         id="idFilterButton"

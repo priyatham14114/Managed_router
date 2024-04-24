@@ -2,72 +2,97 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-    // 'sap/ui/model/json/JSONModel',
+    'sap/ui/model/json/JSONModel',
     'sap/m/Token'
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
+
     // @ts-ignore
     function (Controller, Filter, FilterOperator, JSONModel, Token) {
         "use strict";
 
         return Controller.extend("com.app.firstfsapp.controller.userView", {
             onInit: function () {
-                // debugger
 
                 //  Mutltiinput start
-                // var oView = this.getView();
-                // var oMultiInputs = oView.byId("multiInput");
-                // // @ts-ignore
-                // oMultiInputs.addValidator(function (args) {
-                //     if (true) {
-                //         var text = args.text;
-                //         return new Token({ key: text, text: text });
-                //     }
-                // });
+                const oUserView = this.getView()
+                const sAuthor = oUserView.byId("idAuthorValue"),
+                    sBookName = oUserView.byId("idBooksNameValue"),
+                    sNoOfBooksSold = oUserView.byId("idNoOfBooksSoldValue"),
+                    sPhone = oUserView.byId("idPhoneFilterValue")
+                    
+                const oMultiInputs = [sAuthor, sBookName, sNoOfBooksSold, sPhone]
+
+                oMultiInputs.forEach((inputs) => {
+                    // @ts-ignore
+                    inputs.addValidator(function (args) {
+                        if (true) {
+                            var text = args.text;
+                            return new Token({ key: text, text: text });
+                        }
+                    });
+
+                });
 
                 //  Mutltiinput end
 
-
             },
+
             // @ts-ignore
             onFilterClick: function (eve) {
                 debugger
                 const oUserView = this.getView()
-
                 // @ts-ignore
-                const sAuthor = oUserView.byId("idAuthorFilterValue").getValue(),
-
+                const sAuthor = oUserView.byId("idAuthorValue").getTokens();
+                // console.log(sAuthor); 
+                // @ts-ignore
+                const sBookName = oUserView.byId("idBooksNameValue").getTokens(),
                     // @ts-ignore
-                    sBookName = oUserView.byId("idBookNameFilterValue").getValue(),
-                    //     // @ts-ignore
+                    sNoOfBooksSold = oUserView.byId("idNoOfBooksSoldValue").getTokens(),
                     // @ts-ignore
-                    sNoOfBooksSold = oUserView.byId("idNosoldbooksFilterValue").getValue(),
-                    // @ts-ignore
-                    sPhone = oUserView.byId("iPhoneFilterValue").getValue()
+                    sPhone = oUserView.byId("idPhoneFilterValue").getTokens()
                 const oBooksTable = oUserView.byId("idBooksTable")
                 var aFilters = [];
+                var aInputsFields = [sAuthor, sBookName, sNoOfBooksSold, sPhone]
 
-                sAuthor ? aFilters.push(new Filter("author", FilterOperator.EQ, sAuthor)) : "";
-                console.log(aFilters);
+                aInputsFields.forEach((inputs) => {
+                    console.log("these are aInputsFields", inputs);
+                    inputs.forEach((item) => {
+                        console.log("items", item);              // check with object it contains array of objects inside array of arrays
+                        if (item.length > 0) {
+                            item.filter((ele) => {
+                                ele ? aFilters.push(new Filter("author", FilterOperator.EQ, ele.getKey())) : "";
+                                ele ? aFilters.push(new Filter("bookName", FilterOperator.EQ, ele.getKey())) : "";
+                                ele ? aFilters.push(new Filter("stock", FilterOperator.EQ, ele.getKey())) : "";
+                                ele ? aFilters.push(new Filter("phone", FilterOperator.EQ, ele.getKey())) : "";
+                            })
+                        }
+                    });
+                })
 
-                sBookName ? aFilters.push(new Filter("bookName", FilterOperator.EQ, sBookName)) : "";
-                sNoOfBooksSold ? aFilters.push(new Filter("stock", FilterOperator.EQ, sNoOfBooksSold)) : "";
-                sPhone ? aFilters.push(new Filter("phone", FilterOperator.EQ, sPhone)) : "";
+                // console.log(aFilters);
 
-                if (aFilters) {
-                    // @ts-ignore.
+                if (aFilters.length > 0) {
+                    // @ts-ignore
                     oBooksTable.getBinding("items").filter(aFilters);
                 }
+                else {
+                    console.log("Array not Initialized");
+                }
+
             },
             onClear: function () {
-                const oUserView = this.getView()
-                // ignore TYPE SCRIPT ERRORS
-                const sAuthor = oUserView.byId("idAuthorFilterValue").setValue(""),
-                    sBookName = oUserView.byId("idBookNameFilterValue").setValue(""),
-                    sNoOfBooksSold = oUserView.byId("idNosoldbooksFilterValue").setValue(""),
-                    sPhone = oUserView.byId("iPhoneFilterValue").setValue("");
+                const oUserView = this.getView(),
+                    // @ts-ignore
+                    sAuthor = oUserView.byId("idAuthorValue").destroyTokens(),
+                    // @ts-ignore
+                    sBookName = oUserView.byId("idBooksNameValue").destroyTokens(),
+                    // @ts-ignore
+                    sNoOfBooksSold = oUserView.byId("idNoOfBooksSoldValue").destroyTokens(),
+                    // @ts-ignore
+                    sPhone = oUserView.byId("idPhoneFilterValue").destroyTokens();
 
             }
 
