@@ -1,0 +1,29 @@
+ID,city,_address,pincode,street,landmark
+550e8400-e29b-41d4-a716-446655440000,New York,123 5th Ave,10010,5th Avenue,Empire State Building
+550e8400-e29b-41d4-a716-446655440001,San Francisco,456 Market St,94103,Market Street,Ferry Building
+550e8400-e29b-41d4-a716-446655440002,Chicago,789 Michigan Ave,60611,Michigan Avenue,John Hancock Center
+550e8400-e29b-41d4-a716-446655440005,Boston,1 Beacon St,02108,Beacon Street,Massachusetts State House
+550e8400-e29b-41d4-a716-446655440006,Seattle,1201 3rd Ave,98101,3rd Avenue,Seattle Tower
+550e8400-e29b-41d4-a716-446655440007,Miami,400 NW 2nd Ave,33128,NW 2nd Avenue,Miami Dade County Courthouse
+550e8400-e29b-41d4-a716-446655440008,Denver,1600 Broadway,80202,Broadway,Colorado State Capitol
+550e8400-e29b-41d4-a716-446655440009,Atlanta,100 Peachtree St,30303,Peachtree Street,Westin Peachtree Plaza
+550e8400-e29b-41d4-a716-446655440010,Minneapolis,100 Washington Ave,55401,Washington Avenue,Target Field
+550e8400-e29b-41d4-a716-446655440011,San Diego,300 Ash St,92101,Ash Street,San Diego City Hall
+550e8400-e29b-41d4-a716-446655440012,Portland,200 SW Market St,97201,Market Street,Keller Auditorium
+550e8400-e29b-41d4-a716-446655440013,Washington DC,1600 Pennsylvania Ave,20500,Pennsylvania Avenue,The White House
+550e8400-e29b-41d4-a716-446655440014,Detroit,1 Woodward Ave,48226,Woodward Avenue,Guardian Building
+550e8400-e29b-41d4-a716-446655440015,Charlotte,400 E Trade St,28202,E Trade Street,Charlotte Convention Center
+550e8400-e29b-41d4-a716-446655440016,Philadelphia,1 Liberty Place,19103,Liberty Place,Liberty Bell
+550e8400-e29b-41d4-a716-446655440017,Baltimore,100 Pratt St,21202,Pratt Street,National Aquarium
+550e8400-e29b-41d4-a716-446655440018,Nashville,300 Broadway,37201,Broadway,Ryman Auditorium
+550e8400-e29b-41d4-a716-446655440019,Austin,200 E 6th St,78701,E 6th Street,Paramount Theatre
+550e8400-e29b-41d4-a716-446655440020,Kansas City,100 W 12th St,64105,W 12th Street,Kansas City City Hall
+550e8400-e29b-41d4-a716-446655440021,Las Vegas,3770 S Las Vegas Blvd,89109,S Las Vegas Boulevard,MGM Grand
+550e8400-e29b-41d4-a716-446655440022,Phoenix,100 N Central Ave,85004,N Central Avenue,Arizona Center
+550e8400-e29b-41d4-a716-446655440023,New Orleans,100 Poydras St,70130,Poydras Street,Ernest N. Morial Convention Center
+550e8400-e29b-41d4-a716-446655440024,Dallas,1000 Ross Ave,75202,Ross Avenue,Dallas World Aquarium
+550e8400-e29b-41d4-a716-446655440025,Houston,1200 Travis St,77002,Travis Street,Houston City Hall
+550e8400-e29b-41d4-a716-446655440026,Sacramento,1000 K St,95814,K Street,California State Capitol
+550e8400-e29b-41d4-a716-446655440027,Pittsburgh,1000 Grandview Ave,15211,Grandview Avenue,Mount Washington
+550e8400-e29b-41d4-a716-446655440028,Columbus,1500 Polaris Pkwy,43240,Polaris Parkway,Polaris Fashion Place
+

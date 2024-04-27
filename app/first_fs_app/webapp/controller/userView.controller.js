@@ -22,7 +22,7 @@ sap.ui.define([
                     sBookName = oUserView.byId("idBooksNameValue"),
                     sNoOfBooksSold = oUserView.byId("idNoOfBooksSoldValue"),
                     sPhone = oUserView.byId("idPhoneFilterValue")
-                    
+
                 const oMultiInputs = [sAuthor, sBookName, sNoOfBooksSold, sPhone]
 
                 oMultiInputs.forEach((inputs) => {
@@ -42,7 +42,7 @@ sap.ui.define([
 
             // @ts-ignore
             onFilterClick: function (eve) {
-                debugger
+                // debugger
                 const oUserView = this.getView()
                 // @ts-ignore
                 const sAuthor = oUserView.byId("idAuthorValue").getTokens();
@@ -55,32 +55,34 @@ sap.ui.define([
                     sPhone = oUserView.byId("idPhoneFilterValue").getTokens()
                 const oBooksTable = oUserView.byId("idBooksTable")
                 var aFilters = [];
-                var aInputsFields = [sAuthor, sBookName, sNoOfBooksSold, sPhone]
+                var aInputsFields = [sAuthor, sBookName, sNoOfBooksSold, sPhone];
+
+
+                // sAuthor.filter((ele) => {
+                //     ele ? aFilters.push(new Filter("author", FilterOperator.EQ, ele.getKey())) : "";
+                // })
+                // sBookName.filter((ele)=>{
+                //     ele ? aFilters.push(new Filter("bookName", FilterOperator.EQ, ele.getKey())) : "";
+                // }) 
+
 
                 aInputsFields.forEach((inputs) => {
-                    console.log("these are aInputsFields", inputs);
-                    inputs.forEach((item) => {
-                        console.log("items", item);              // check with object it contains array of objects inside array of arrays
-                        if (item.length > 0) {
-                            item.filter((ele) => {
-                                ele ? aFilters.push(new Filter("author", FilterOperator.EQ, ele.getKey())) : "";
-                                ele ? aFilters.push(new Filter("bookName", FilterOperator.EQ, ele.getKey())) : "";
-                                ele ? aFilters.push(new Filter("stock", FilterOperator.EQ, ele.getKey())) : "";
-                                ele ? aFilters.push(new Filter("phone", FilterOperator.EQ, ele.getKey())) : "";
-                            })
-                        }
-                    });
+                    if (inputs) {
+                        inputs.filter((ele) => {
+                            sAuthor.length > 0 ? aFilters.push(new Filter("author", FilterOperator.EQ, ele.getKey())) : "";
+                            sBookName.length > 0 ? aFilters.push(new Filter("bookName", FilterOperator.EQ, ele.getKey())) : "";
+                            sNoOfBooksSold.length > 0 ? aFilters.push(new Filter("books_sold", FilterOperator.EQ, ele.getKey())) : "";
+                            sPhone.length > 0 ? aFilters.push(new Filter("phone", FilterOperator.EQ, ele.getKey())) : "";
+                        })
+                    }
+
                 })
 
                 // console.log(aFilters);
 
-                if (aFilters.length > 0) {
-                    // @ts-ignore
-                    oBooksTable.getBinding("items").filter(aFilters);
-                }
-                else {
-                    console.log("Array not Initialized");
-                }
+                // @ts-ignore
+                oBooksTable.getBinding("items").filter(aFilters);
+
 
             },
             onClear: function () {
@@ -94,9 +96,18 @@ sap.ui.define([
                     // @ts-ignore
                     sPhone = oUserView.byId("idPhoneFilterValue").destroyTokens();
 
+            },
+            onSelectAuthor: function (oEvent) {
+                const { ID, author } = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
+              
+                debugger
+                  // @ts-ignore
+                const oRouter = this.getOwnerComponent().getRouter();
+                oRouter.navTo("RouteDetails", {
+                    authorId: ID,
+                    authorname: author
+                })
+
             }
-
-
-
         });
     });

@@ -154,6 +154,8 @@
                 mode="SingleSelectMaster"
                 alternateRowColors="true"
                 items="{/Books}"
+                selectionChange="onSelectAuthor"
+                
             >
                 <headerToolbar>
                     <OverflowToolbar id="idBooksTableHeader">
@@ -209,7 +211,7 @@
                     </Column>
                 </columns>
                 <items>
-                    <ColumnListItem id="idBooksTableColListItem">
+                    <ColumnListItem id="idBooksTableColListItem" type="Navigation">
                         <cells>
                             <Text
                                 id="idAuthorColValue"

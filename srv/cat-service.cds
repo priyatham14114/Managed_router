@@ -7,4 +7,6 @@ service CatalogService {
     //     to : 'Admin'
     // }]
          entity Books as projection on my.Books;
+         entity Address as projection on my.Address;
+         entity PersonalDetails as projection on my.PersonalDetails;
 }

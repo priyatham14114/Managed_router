@@ -116,6 +116,12 @@
           "target": [
             "TargetuserView"
           ]
+        },{
+          "name": "RouteDetails",
+          "pattern": "authorDetails/{authorId}/{authorname}",
+          "target": [
+            "TargetAuthorDetails"
+          ]
         }
       ],
       "targets": {
@@ -125,6 +131,12 @@
           "clearControlAggregation": false,
           "viewId": "userView",
           "viewName": "userView"
+        },
+        "TargetAuthorDetails": {
+          "viewType": "XML",
+          "transition": "slide",
+          "viewId": "details",
+          "viewName": "details"
         }
       }
     },

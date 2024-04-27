@@ -3,151 +3,154 @@ ID: Sample_prjct
 description: A simple CAP project.
 version: 1.0.0
 modules:
-- name: Sample_prjct-srv
-  type: nodejs
-  path: gen/srv
-  requires:
-  - name: Sample_prjct-db
-  - name: Sample_prjct-auth
-  provides:
-  - name: srv-api
-    properties:
-      srv-url: ${default-url}
-  parameters:
-    buildpack: nodejs_buildpack
-    readiness-health-check-http-endpoint: /health
-    readiness-health-check-type: http
-  build-parameters:
-    builder: npm
-- name: Sample_prjct-db-deployer
-  type: hdb
-  path: gen/db
-  requires:
-  - name: Sample_prjct-db
-  parameters:
-    buildpack: nodejs_buildpack
-- name: Sample_prjct-destination-content
-  type: com.sap.application.content
-  requires:
-  - name: Sample_prjct-destination-service
-    parameters:
-      content-target: true
-  - name: Sample_prjct_html_repo_host
-    parameters:
-      service-key:
-        name: Sample_prjct_html_repo_host-key
-  - name: Sample_prjct-auth
-    parameters:
-      service-key:
-        name: Sample_prjct-auth-key
-  parameters:
-    content:
-      instance:
-        destinations:
-        - Name: managedapprouter_Sample_prjct_html_repo_host
-          ServiceInstanceName: Sample_prjct-html5-app-host-service
-          ServiceKeyName: Sample_prjct_html_repo_host-key
-          sap.cloud.service: managedapprouter
-        - Authentication: OAuth2UserTokenExchange
-          Name: managedapprouter_Sample_prjct_auth
-          ServiceInstanceName: Sample_prjct-auth
-          ServiceKeyName: Sample_prjct-auth-key
-          sap.cloud.service: managedapprouter
-        existing_destinations_policy: ignore
-  build-parameters:
-    no-source: true
-- name: Sample_prjct-app-content
-  type: com.sap.application.content
-  path: .
-  requires:
-  - name: Sample_prjct_html_repo_host
-    parameters:
-      content-target: true
-  build-parameters:
-    build-result: resources
+  - name: Sample_prjct-srv
+    type: nodejs
+    path: gen/srv
     requires:
-    - artifacts:
-      - comappfirstfsproject.zip
-      name: comappfirstfsproject
-      target-path: resources/
-    - artifacts:
-      - comappfirstfsapp.zip
-      name: comappfirstfsapp
-      target-path: resources/
-- name: comappfirstfsproject
-  type: html5
-  path: app/first_fs_project
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: comappfirstfsapp
-  type: html5
-  path: app/first_fs_app
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-resources:
-- name: Sample_prjct-db
-  type: com.sap.xs.hdi-container
-  parameters:
-    service: hana
-    service-plan: hdi-shared
-- name: Sample_prjct-auth
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      tenant-mode: dedicated
-      xsappname: Sample_prjct-${org}-${space}
-    path: ./xs-security.json
-    service: xsuaa
-    service-plan: application
-- name: Sample_prjct-destination-service
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      HTML5Runtime_enabled: true
-      init_data:
+      - name: Sample_prjct-db
+      - name: Sample_prjct-auth
+      - name: Sample_prjct-destination-service
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    parameters:
+      buildpack: nodejs_buildpack
+      readiness-health-check-http-endpoint: /health
+      readiness-health-check-type: http
+    build-parameters:
+      builder: npm
+  - name: Sample_prjct-db-deployer
+    type: hdb
+    path: gen/db
+    requires:
+      - name: Sample_prjct-db
+    parameters:
+      buildpack: nodejs_buildpack
+  - name: Sample_prjct-destination-content
+    type: com.sap.application.content
+    requires:
+      - name: Sample_prjct-destination-service
+        parameters:
+          content-target: true
+      - name: Sample_prjct_html_repo_host
+        parameters:
+          service-key:
+            name: Sample_prjct_html_repo_host-key
+      - name: Sample_prjct-auth
+        parameters:
+          service-key:
+            name: Sample_prjct-auth-key
+    parameters:
+      content:
         instance:
           destinations:
-          - Authentication: NoAuthentication
-            Name: ui5
-            ProxyType: Internet
-            Type: HTTP
-            URL: https://ui5.sap.com
-          - Authentication: NoAuthentication
-            HTML5.DynamicDestination: true
-            HTML5.ForwardAuthToken: true
-            Name: Sample_prjct-srv-api
-            ProxyType: Internet
-            Type: HTTP
-            URL: ~{srv-api/srv-url}
-          existing_destinations_policy: update
-      version: 1.0.0
-    service: destination
-    service-name: Sample_prjct-destination-service
-    service-plan: lite
-  requires:
-  - name: srv-api
-- name: Sample_prjct_html_repo_host
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-name: Sample_prjct-html5-app-host-service
-    service-plan: app-host
+            - Name: managedapprouter_Sample_prjct_html_repo_host
+              ServiceInstanceName: Sample_prjct-html5-app-host-service
+              ServiceKeyName: Sample_prjct_html_repo_host-key
+              sap.cloud.service: managedapprouter
+            - Authentication: OAuth2UserTokenExchange
+              Name: managedapprouter_Sample_prjct_auth
+              ServiceInstanceName: Sample_prjct-auth
+              ServiceKeyName: Sample_prjct-auth-key
+              sap.cloud.service: managedapprouter
+          existing_destinations_policy: ignore
+    build-parameters:
+      no-source: true
+  - name: Sample_prjct-app-content
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: Sample_prjct_html_repo_host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - comappfirstfsproject.zip
+          name: comappfirstfsproject
+          target-path: resources/
+        - artifacts:
+            - comappfirstfsapp.zip
+          name: comappfirstfsapp
+          target-path: resources/
+  - name: comappfirstfsproject
+    type: html5
+    path: app/first_fs_project
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
+  - name: comappfirstfsapp
+    type: html5
+    path: app/first_fs_app
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
+resources:
+  - name: Sample_prjct-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: Sample_prjct-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        tenant-mode: dedicated
+        xsappname: Sample_prjct-${org}-${space}
+      path: ./xs-security.json
+      service: xsuaa
+      service-plan: application
+  - name: Sample_prjct-destination-service
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: true
+        init_data:
+          instance:
+            destinations:
+              - Authentication: NoAuthentication
+                Name: ui5
+                ProxyType: Internet
+                Type: HTTP
+                URL: https://ui5.sap.com
+              - Authentication: NoAuthentication
+                HTML5.DynamicDestination: true
+                HTML5.ForwardAuthToken: true
+                Name: Sample_prjct-srv-api
+                ProxyType: Internet
+                Type: HTTP
+                URL: ~{srv-api/srv-url}
+            existing_destinations_policy: update
+        version: 1.0.0
+      service: destination
+      service-name: Sample_prjct-destination-service
+      service-plan: lite
+    requires:
+      - name: srv-api
+  - name: Sample_prjct_html_repo_host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-name: Sample_prjct-html5-app-host-service
+      service-plan: app-host
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
 build-parameters:
   before-all:
-  - builder: custom
-    commands:
-    - npm ci
-    - npx cds build --production
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
