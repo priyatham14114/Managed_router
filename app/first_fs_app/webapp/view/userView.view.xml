@@ -150,7 +150,7 @@
         </f:header>
         <f:content>
             <Table
-                id="idBooksTable"
+                id="idAuthorTable"
                 mode="SingleSelectMaster"
                 alternateRowColors="true"
                 items="{/Books}"
@@ -169,6 +169,7 @@
                             icon="sap-icon://add"
                             tooltip="Add a Record"
                             type="Success"
+                            press="onCreateBtnPress"
                         />
                         <Button
                             id="idBtnDelete"

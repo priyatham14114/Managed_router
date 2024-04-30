@@ -1,16 +1,19 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+    "./baseController",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     'sap/ui/model/json/JSONModel',
-    'sap/m/Token'
+    'sap/m/Token',
+    "sap/ui/core/Fragment",
+    "sap/m/MessageBox"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
 
+
     // @ts-ignore
-    function (Controller, Filter, FilterOperator, JSONModel, Token) {
+    function (Controller, Filter, FilterOperator, JSONModel, Token, Fragment, MessageBox) {
         "use strict";
 
         return Controller.extend("com.app.firstfsapp.controller.userView", {
@@ -38,11 +41,29 @@ sap.ui.define([
 
                 //  Mutltiinput end
 
+                const newAuthorModel = new JSONModel({
+                    author: "",
+                    bookName: "",
+                    stock: "",
+                    books_sold: "",
+                    published_on: "",
+                    phone: "",
+                });
+
+                this.getView().setModel(newAuthorModel, "newAuthorModel");
+                // @ts-ignore
+                this.getOwnerComponent().getRouter().attachRoutePatternMatched(this.onAuthorListLoad, this);
+
+            },
+
+            onAuthorListLoad: function () {
+                // @ts-ignore
+                this.getView().byId("idAuthorTable").getBinding("items").refresh();
             },
 
             // @ts-ignore
             onFilterClick: function (eve) {
-                // debugger
+                debugger
                 const oUserView = this.getView()
                 // @ts-ignore
                 const sAuthor = oUserView.byId("idAuthorValue").getTokens();
@@ -53,7 +74,7 @@ sap.ui.define([
                     sNoOfBooksSold = oUserView.byId("idNoOfBooksSoldValue").getTokens(),
                     // @ts-ignore
                     sPhone = oUserView.byId("idPhoneFilterValue").getTokens()
-                const oBooksTable = oUserView.byId("idBooksTable")
+                const oBooksTable = oUserView.byId("idAuthorTable")
                 var aFilters = [];
                 var aInputsFields = [sAuthor, sBookName, sNoOfBooksSold, sPhone];
 
@@ -61,10 +82,6 @@ sap.ui.define([
                 // sAuthor.filter((ele) => {
                 //     ele ? aFilters.push(new Filter("author", FilterOperator.EQ, ele.getKey())) : "";
                 // })
-                // sBookName.filter((ele)=>{
-                //     ele ? aFilters.push(new Filter("bookName", FilterOperator.EQ, ele.getKey())) : "";
-                // }) 
-
 
                 aInputsFields.forEach((inputs) => {
                     if (inputs) {
@@ -97,17 +114,63 @@ sap.ui.define([
                     sPhone = oUserView.byId("idPhoneFilterValue").destroyTokens();
 
             },
+            // Routhing 
             onSelectAuthor: function (oEvent) {
                 const { ID, author } = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
-              
-                debugger
-                  // @ts-ignore
+
+                // debugger
+                // @ts-ignore
                 const oRouter = this.getOwnerComponent().getRouter();
                 oRouter.navTo("RouteDetails", {
                     authorId: ID,
                     authorname: author
                 })
 
-            }
+            },
+            // Opening of DailogBox 
+           
+            // @ts-ignore
+            onCreateBtnPress: async function () {
+                // @ts-ignore
+                if (!this.oCreateAuthorDialog) {
+                    // @ts-ignore
+                    this.oCreateAuthorDialog = await this.loadFragment("createAuthor")
+                }
+                // @ts-ignore
+                this.oCreateAuthorDialog.open();
+                
+            },
+
+            //  closing of Dailogbox
+            onCloseDialog: function () {
+                // debugger
+                // @ts-ignore
+                if (this.oCreateAuthorDialog.isOpen()) {
+                    // @ts-ignore
+                    this.oCreateAuthorDialog.close()
+
+                }
+            },
+            // @ts-ignore
+            onCreateAuthor: async function () {
+                debugger
+                const oPayload = this.getView().getModel("newAuthorModel").getProperty("/"),
+                    oModel = this.getView().getModel();
+                try {
+                    // @ts-ignore
+                    await this.createData(oModel, oPayload, "/Books"),
+                    // @ts-ignore
+                    this.getView().byId("idAuthorTable").getBinding("items").refresh(),
+                    // @ts-ignore
+                    this.oCreateAuthorDialog.close();
+                } catch (error) {
+                    // @ts-ignore
+                    this.oCreateAuthorDialog.close();
+                    // @ts-ignore
+                    // alert("catch block")
+                    MessageBox.error("Some technical Issue");
+                }
+            },
+            
         });
     });

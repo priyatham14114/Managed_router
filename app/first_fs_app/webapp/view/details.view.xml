@@ -45,6 +45,7 @@
                         id="idBtnDelete"
                         type="Transparent"
                         text="Delete"
+                        press="onDeleteAuthor"
                     />
                     <m:Button
                         id="idBtnCopy"
