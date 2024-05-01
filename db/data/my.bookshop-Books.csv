@@ -1,0 +1,50 @@
+ID,author,bookName,stock,books_sold,published_on,phone,address_ID,personalInfo_ID,photo
+afea7fbb-6b94-43f3-8f3e-2e0f6b8742b3,John Smith,The Lost World,120,80,2015-05-15,9951234567,550e8400-e29b-41d4-a716-446655440000,1e0d7a8b-6b7e-4c1a-9d3f-2a5b6c7e8f9a,https://images.pexels.com/photos/4865526/pexels-photo-4865526.jpeg?auto=compress&cs=tinysrgb&w=600
+c718ea21-0b37-4cc9-899b-7f4389e356d2,Jane Doe,The Silent Sea,75,30,2018-08-21,9952345678,550e8400-e29b-41d4-a716-446655440001,2f1c3d4e-5g6h-7i8j-9k0l-1m2n3o4p5q6r,https://images.pexels.com/photos/3772623/pexels-photo-3772623.jpeg?auto=compress&cs=tinysrgb&w=600
+f2dc7b22-c785-47ff-94d6-4d21d1ae3b35,Robert Brown,The Silver Sword,200,150,2016-12-10,8973456789,550e8400-e29b-41d4-a716-446655440002,3a4b5c6d-7e8f-9g0h-1i2j-3k4l5m6n7o8p,https://i.pinimg.com/236x/b6/15/d1/b615d1b878bb7f54cbc92cc7ef59703c.jpg
+a8c395a6-1c29-4707-a4f1-3293ff032db8,Emily Clark,The Golden Compass,130,90,2019-03-14,8974567890,550e8400-e29b-41d4-a716-446655440005,4f5e6d7c-8b9a-0d1e-2c3f-4g5h6i7j8k9l,https://images.pexels.com/photos/3772623/pexels-photo-3772623.jpeg?auto=compress&cs=tinysrgb&w=600
+bfdcc1a9-c029-47a8-9b72-54f7e74c8306,Sarah Wilson,The Hidden Kingdom,85,40,2021-01-06,8975678901,550e8400-e29b-41d4-a716-446655440006,5k6l7m8n-9o0p-1q2r-3s4t-5u6v7w8x9y0z,https://i.pinimg.com/236x/b6/15/d1/b615d1b878bb7f54cbc92cc7ef59703c.jpg
+342f45da-e2d3-45e8-8d2b-7a88d2a443f5,Michael Scott,The Secret Garden,100,60,2017-10-27,8976789012,550e8400-e29b-41d4-a716-446655440007,6m7n8o9p-0q1r-2s3t-4u5v-6w7x8y9z0a1b,https://images.pexels.com/photos/4865526/pexels-photo-4865526.jpeg?auto=compress&cs=tinysrgb&w=600
+f09141e3-f3db-4a2e-bf0a-7f416dc68985,Linda Thompson,The Red Planet,110,70,2020-06-23,8977890123,550e8400-e29b-41d4-a716-446655440008,7h8i9j0k-1l2m-3n4o-5p6q-7r8s9t0u1v2w,https://i.pinimg.com/236x/b6/15/d1/b615d1b878bb7f54cbc92cc7ef59703c.jpg
+ba45e6b7-5a62-4e2f-bc72-2a1a9274833d,James Taylor,The Lost Star,65,25,2014-04-12,8978901234,550e8400-e29b-41d4-a716-446655440009,8d9e0f1g-2h3i-4j5k-6l7m-8n9o0p1q2r3s,https://images.pexels.com/photos/3772623/pexels-photo-3772623.jpeg?auto=compress&cs=tinysrgb&w=600
+7c5a1d98-d2a3-4e6f-a2b7-1f4f5e7c93d6,Charlotte Green,The Blue Lagoon,90,50,2013-09-05,8979012345,550e8400-e29b-41d4-a716-446655440010,9p1q2r3s-4t5u-6v7w-8x9y-0a1b2c3d4e5f,https://i.pinimg.com/236x/b6/15/d1/b615d1b878bb7f54cbc92cc7ef59703c.jpg
+d8b18c4c-8c2b-49c6-9a43-1efad22d6a1d,Mark Johnson,The Secret Society,125,85,2016-11-19,8970123456,550e8400-e29b-41d4-a716-446655440011,0e1f2g3h-4i5j-6k7l-8m9n-0o1p2q3r4s5t,https://images.pexels.com/photos/3772623/pexels-photo-3772623.jpeg?auto=compress&cs=tinysrgb&w=600
+1c3a7fb4-6d5e-4d3b-b3f7-21e1c9f7e1f4,Rachel Lee,The Last Voyage,70,40,2022-07-08,8971234567,550e8400-e29b-41d4-a716-446655440012,1l2m3n4o-5p6q-7r8s-9t0u-1v2w3x4y5z6a,https://i.pinimg.com/236x/b6/15/d1/b615d1b878bb7f54cbc92cc7ef59703c.jpg
+3ae1f672-d5d1-4569-9d7b-9c5f9fdb8323,Thomas Brown,The Endless Sea,140,100,2012-05-30,8972345678,550e8400-e29b-41d4-a716-446655440013,2f3g4h5i-6j7k-8l9m-0n1o-2p3q4r5s6t7u,https://images.pexels.com/photos/3772623/pexels-photo-3772623.jpeg?auto=compress&cs=tinysrgb&w=600
+e2e98a72-0f2b-4d5b-9e1d-5a1f1e6a7c3b,Alice Cooper,The Silent Forest,80,35,2011-03-17,8973456789,550e8400-e29b-41d4-a716-446655440014,3s4t5u6v-7w8x-9y0z-1a2b-3c4d5e6f7g8h,https://i.pinimg.com/236x/b6/15/d1/b615d1b878bb7f54cbc92cc7ef59703c.jpg
+f1d2e3c4-b5a6-47d5-8e2f-3a1b1e2c3d4e,Christopher White,The Dark Knight,115,75,2017-07-22,8974567890,550e8400-e29b-41d4-a716-446655440015,4q5r6s7t-8u9v-0w1x-2y3z-4a5b6c7d8e9f,https://i.pinimg.com/236x/b6/15/d1/b615d1b878bb7f54cbc92cc7ef59703c.jpg
+d5e4f3c2-7a6b-48f7-9a5e-3c1f2b3e4d5c,Lucy Adams,The Golden Age,105,55,2015-12-10,5555678901,550e8400-e29b-41d4-a716-446655440016,5u6v7w8x-9y0z-1a2b-3c4d-5e6f7g8h9i0j,https://images.pexels.com/photos/4865526/pexels-photo-4865526.jpeg?auto=compress&cs=tinysrgb&w=600
+ac4f5b6d-7e8a-48f1-9b2c-3f1e7d6a5b2c,Daniel Green,The Red Horizon,95,60,2018-10-04,5556789012,550e8400-e29b-41d4-a716-446655440017,6v7w8x9y-0a1b-2c3d-4e5f-6g7h8i9j0k1l,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-su8VQXJ9nW_a72fw_Pmd391-nbeyORWBiQ&s
+b3c2d1e4-7f6a-48d7-9b1e-3f1c2b4e5d6f,Grace Parker,The Silver Moon,160,115,2013-08-15,5557890123,550e8400-e29b-41d4-a716-446655440018,7p8q9r0s-1t2u-3v4w-5x6y-7z8a9b0c1d2e,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-su8VQXJ9nW_a72fw_Pmd391-nbeyORWBiQ&s
+d4c3b2a1-8f9e-4d6b-9c1e-3f1b2c4d5e6f,Oliver Davis,The Secret Cave,75,35,2010-11-03,5558901234,550e8400-e29b-41d4-a716-446655440019,8s9t0u1v-2w3x-4y5z-6a7b-8c9d0e1f2g3h,https://images.pexels.com/photos/4865526/pexels-photo-4865526.jpeg?auto=compress&cs=tinysrgb&w=600
+e3c4b5a6-7f8e-49f1-9c1b-3a1e2d3c4f5b,Stephanie Brown,The Silent Night,125,85,2019-01-29,5559012345,550e8400-e29b-41d4-a716-446655440020,9r0s1t2u-3v4w-5x6y-7z8a-9b0c1d2e3f4g,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-su8VQXJ9nW_a72fw_Pmd391-nbeyORWBiQ&s
+d1e2f3c4-b6a7-48d1-9b2c-3f1e2c3d4f5a,Paul Williams,The Dark River,115,65,2016-06-13,5550123456,550e8400-e29b-41d4-a716-446655440021,0v1w2x3y-4z5a-6b7c-8d9e-0f1g2h3i4j5k,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-su8VQXJ9nW_a72fw_Pmd391-nbeyORWBiQ&s
+f3c4b5a6-7d8e-4e2f-9b1e-3f1c2b3e4d5f,Karen Johnson,The Hidden Path,90,50,2014-02-24,5551234567,550e8400-e29b-41d4-a716-446655440022,1r2s3t4u-5v6w-7x8y-9z0a-1b2c3d4e5f6g,https://images.pexels.com/photos/4865526/pexels-photo-4865526.jpeg?auto=compress&cs=tinysrgb&w=600
+b4c3d2e1-8f9e-4d6c-9b1e-3f1a2b3c4d5e,David Brown,The Silent Storm,105,55,2015-09-30,5552345678,550e8400-e29b-41d4-a716-446655440023,2t3u4v5w-6x7y-8z9a-0b1c-2d3e4f5g6h7i,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-su8VQXJ9nW_a72fw_Pmd391-nbeyORWBiQ&s
+d8k3n4k3-e5f6-48f1-9b2c-3f1c2b4e5d6g,Barbara Clark,The Golden Valley,135,90,2020-12-19,5553456789,550e8400-e29b-41d4-a716-446655440024,3w4x5y6z-7a8b-9c0d-1e2f-3g4h5i6j7k8l,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-su8VQXJ9nW_a72fw_Pmd391-nbeyORWBiQ&s
+d6f5e4c3-b2a1-47d7-8f9c-3f1e2c3d4e5f,Matthew Scott,The Silver Lining,95,45,2011-08-16,5554567890,550e8400-e29b-41d4-a716-446655440025,4s5t6u7v-8w9x-0y1z-2a3b-4c5d6e7f8g9h,https://images.pexels.com/photos/3772623/pexels-photo-3772623.jpeg?auto=compress&cs=tinysrgb&w=600
+c3b2a1d4-7e8f-49e2-9c1b-3f1d2c3e4f5g,Susan Lee,The Silent Lake,115,75,2017-03-10,5555678901,550e8400-e29b-41d4-a716-446655440026,5x6y7z8a-0b1c-2d3e-4f5g-6h7i8j9k0l1m,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-su8VQXJ9nW_a72fw_Pmd391-nbeyORWBiQ&s
+f4e3d2c1-b6a7-49f1-9b1e-3f1c2b3e4d5g,Steven Taylor,The Red Dragon,140,85,2013-05-25,5556789012,550e8400-e29b-41d4-a716-446655440027,6z7a8b9c-1d2e-3f4g-5h6i-7j8k9l0m1n2o,https://images.pexels.com/photos/4865526/pexels-photo-4865526.jpeg?auto=compress&cs=tinysrgb&w=600
+e5c4b3a2-7f8e-49d1-9c1e-3f1b2d3c4e5f,Rachel Johnson,The Secret Kingdom,125,85,2018-07-20,5557890123,550e8400-e29b-41d4-a716-446655440028,7y8z9a0b-1c2d-3e4f-5g6h-7i8j9k0l1m2n,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-su8VQXJ9nW_a72fw_Pmd391-nbeyORWBiQ&s
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
