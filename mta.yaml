@@ -68,8 +68,8 @@ modules:
       build-result: resources
       requires:
         - artifacts:
-            - comappfirstfsproject.zip
-          name: comappfirstfsproject
+            - comappfirstfsapp.zip
+          name: comappfirstfsapp
           target-path: resources/
         - artifacts:
             - comappfirstfsapp.zip
@@ -152,6 +152,5 @@ build-parameters:
   before-all:
     - builder: custom
       commands:
-        - npm install
         - npm ci
         - npx cds build --production
