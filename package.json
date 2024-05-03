@@ -47,9 +47,9 @@
                 "auth": {
                     "kind": "mocked",
                     "users": {
-                        "admin@sap.com": {
-                            "password": "Initial",
-                            "ID": "admin@sap.com",
+                        "subhash@sap.com": {
+                            "password": "subhash",
+                            "ID": "subhash@sap.com",
                             "roles": [
                                 "Admin"
                             ]
