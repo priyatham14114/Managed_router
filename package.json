@@ -63,9 +63,8 @@
                         }
                     }
                 }
-            },
-            "destinations": true,
-            "auth": "xsuaa"
+            }
+            
         }
     }
 }
