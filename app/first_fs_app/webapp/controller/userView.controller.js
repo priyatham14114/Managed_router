@@ -16,7 +16,7 @@ sap.ui.define([
     function (Controller, Filter, FilterOperator, JSONModel, Token, Fragment, MessageBox) {
         "use strict";
 
-        return Controller.extend("com.app.firstfsapp.controller.userView", {
+        return Controller.extend("com.first_fs_app.controller.userView", {
             onInit: function () {
 
                 //  Mutltiinput start

@@ -75,9 +75,9 @@ modules:
             - comappfirstfsapp.zip
           name: comappfirstfsapp
           target-path: resources/
-  - name: comappfirstfsproject
+  - name: comappfirst_fs_app
     type: html5
-    path: app/first_fs_project
+    path: app/first_fs_app
     build-parameters:
       build-result: dist
       builder: custom

@@ -8,7 +8,7 @@ sap.ui.define([
 ], function (Controller, Fragment, JSONModel) {
     'use strict';
 
-    return Controller.extend("com.app.firstfsapp.controller.baseController", {
+    return Controller.extend("com.app.first_fs_app.controller.baseController", {
 
         getRouter: function () {
             return this.getOwnerComponent().getRouter();

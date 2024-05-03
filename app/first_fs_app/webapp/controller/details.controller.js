@@ -6,7 +6,7 @@ sap.ui.define(
   function (BaseController, MessageBox) {
     "use strict";
 
-    return BaseController.extend("com.app.firstfsapp.controller.details", {
+    return BaseController.extend("com.app.first_fs_app.controller.details", {
       onInit: function () {
         const oRouter = this.getOwnerComponent().getRouter();
         oRouter.attachRoutePatternMatched(this.onAuthorDetailsLoad, this);
