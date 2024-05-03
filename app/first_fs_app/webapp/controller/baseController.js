@@ -4,11 +4,12 @@ sap.ui.define([
     'sap/ui/model/json/JSONModel'
 
 
-], function (Controller, Fragment,JSONModel) {
+// @ts-ignore
+], function (Controller, Fragment, JSONModel) {
     'use strict';
 
     return Controller.extend("com.app.firstfsapp.controller.baseController", {
-        
+
         getRouter: function () {
             return this.getOwnerComponent().getRouter();
         },
@@ -21,23 +22,13 @@ sap.ui.define([
             this.getView().addDependent(oFragment);
             return oFragment
         },
-        createData: async function(oModel, oPayload, sPath){
+        
+        deleteAuthor: function(oModel, sPath, ID){
             debugger
+            // @ts-ignore
             return new Promise((resolve, reject) => {
-                oModel.create(sPath, oPayload, {
-                    // refreshAfterChange: true,
-                    success: function(oSuccessData){
-                        resolve(oSuccessData);
-                    },
-                    error: function(oErrorData){
-                        reject(oErrorData)
-                    }
-                })
-            })
-        },
-        deleteAuthor: async function(oModel, sPath, ID){
-            return new Promise((resolve, reject) => {
-                oModel.remove(`${sPath}/${ID}`, {
+                oModel.remove (`${sPath}/${ID}`,
+                {
                     success: function(oSuccessData){
                         resolve(oSuccessData);
                     },

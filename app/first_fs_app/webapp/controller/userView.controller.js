@@ -50,7 +50,15 @@ sap.ui.define([
                     phone: "",
                 });
 
+                //  last change here.... check with datatype conversion 
+
+                // const stock2 = parseInt(this.getView().getModel("newAuthorModel").getProperty("/stock"));
+                // newAuthorModel.setProperty("/stock", stock2);
+                // const books_sold = parseInt(this.getView().getModel("newAuthorModel").getProperty("/books_sold"));
+                // const phone = parseInt(this.getView().getModel("newAuthorModel").getProperty("/phone"));
                 this.getView().setModel(newAuthorModel, "newAuthorModel");
+
+
                 // @ts-ignore
                 this.getOwnerComponent().getRouter().attachRoutePatternMatched(this.onAuthorListLoad, this);
 
@@ -128,7 +136,7 @@ sap.ui.define([
 
             },
             // Opening of DailogBox 
-           
+
             // @ts-ignore
             onCreateBtnPress: async function () {
                 // @ts-ignore
@@ -138,12 +146,11 @@ sap.ui.define([
                 }
                 // @ts-ignore
                 this.oCreateAuthorDialog.open();
-                
+
             },
 
             //  closing of Dailogbox
             onCloseDialog: function () {
-                // debugger
                 // @ts-ignore
                 if (this.oCreateAuthorDialog.isOpen()) {
                     // @ts-ignore
@@ -154,23 +161,27 @@ sap.ui.define([
             // @ts-ignore
             onCreateAuthor: async function () {
                 debugger
-                const oPayload = this.getView().getModel("newAuthorModel").getProperty("/"),
-                    oModel = this.getView().getModel();
-                try {
-                    // @ts-ignore
-                    await this.createData(oModel, oPayload, "/Books"),
-                    // @ts-ignore
-                    this.getView().byId("idAuthorTable").getBinding("items").refresh(),
-                    // @ts-ignore
-                    this.oCreateAuthorDialog.close();
-                } catch (error) {
-                    // @ts-ignore
-                    this.oCreateAuthorDialog.close();
-                    // @ts-ignore
-                    // alert("catch block")
-                    MessageBox.error("Some technical Issue");
-                }
-            },
-            
+                const oJsonModel = this.getView().getModel("newAuthorModel"),
+                    oPayload = oJsonModel.getProperty("/");
+                const oODataModel = this.getView().getModel("ModelV2");  // Get the OData V2 model
+                const sEntitySet = "/Books";                    // The entity set 
+
+               await oODataModel.create(sEntitySet, oPayload);      // path and payload
+
+                // try {
+                //     const oPayload = this.getView().getModel("newAuthorModel").getProperty("/"),
+                //         oModel = this.getView().getModel();
+                //     const oBinding = oModel.bindList("/Books");  // Bind to the entity set
+                //     const oContext = oBinding.create(oPayload)
+                //     this.getView().byId("idAuthorTable").getBinding("items").refresh();
+                //     this.oCreateAuthorDialog.close();
+                // }
+                // catch (error) {
+                //     MessageBox.error("Error creating entity: " + error.message);
+                // };
+
+                // const oPayload = this.getView().getModel("newAuthorModel").getProperty("/"),
+                //     oModel = this.getView().getModel("ModelV2");
+            }
         });
     });
