@@ -10,7 +10,7 @@ entity Books : cuid {
       published_on : Date;
       phone        : String;
       address      : Association to Address;
-      personalInfo : Composition of PersonalDetails;
+      personalInfo : Association to PersonalDetails;
       photo        : LargeString;
 
 }
