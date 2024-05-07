@@ -22,6 +22,19 @@ sap.ui.define([
             this.getView().addDependent(oFragment);
             return oFragment
         },
+        createData: function(oModel, oPayload, sPath){
+            return new Promise((resolve, reject) => {
+                oModel.create(sPath, oPayload, {
+                    refreshAfterChange: true,
+                    success: function(oSuccessData){
+                        resolve(oSuccessData);
+                    },
+                    error: function(oErrorData){
+                        reject(oErrorData)
+                    }
+                })
+            })
+        },
         
         deleteAuthor: function(oModel, sPath, ID){
             debugger
@@ -37,9 +50,7 @@ sap.ui.define([
                     }
                 })
             })            
-        }
-        
-        
+        }     
     })
 
 });
