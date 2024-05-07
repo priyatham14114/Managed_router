@@ -121,7 +121,7 @@ sap.ui.define([
             onSelectAuthor: function (oEvent) {
                 const { ID, author } = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
 
-                // debugger
+                
 
                 const oRouter = this.getOwnerComponent().getRouter();
                 oRouter.navTo("RouteDetails", {
