@@ -130,7 +130,7 @@ sap.ui.define([
                 })
 
             },
-            // Opening of DailogBox 
+            // Opening of Dailog
 
 
             onCreateBtnPress: async function () {
