@@ -35,8 +35,8 @@
     },
     "crossNavigation": {
       "inbounds": {
-        "Books data-Display": {
-          "semanticObject": "Books data",
+        "Books-Display": {
+          "semanticObject": "Books",
           "action": "Display",
           "title": "{{flpTitle}}",
           "signature": {
@@ -136,7 +136,7 @@
           ]
         },{
           "name": "RouteDetails",
-          "pattern": "authorDetails/{authorId}/{authorname}",
+          "pattern": "authorDetails/{authorId}/",
           "target": [
             "TargetAuthorDetails"
           ]

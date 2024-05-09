@@ -17,7 +17,7 @@
         "@cap-js/sqlite": "^1",
         "@sap/cds-dk": "^7",
         "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
-        "@sap/ux-specification": "^1.120.8",
+        "@sap/ux-specification": "^1.120.9",
         "@sapui5/ts-types": "^1.92.2",
         "eslint": "^7.32.0",
         "rimraf": "^3.0.2"
@@ -28,7 +28,8 @@
         "undeploy": "cf undeploy Sample_prjct --delete-services --delete-service-keys --delete-service-brokers",
         "build": "rimraf resources mta_archives && mbt build --mtar archive",
         "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
-        "watch-first_fs_app": "cds watch --open first_fs_app/webapp/index.html?sap-ui-xx-viewCache=false"
+        "watch-first_fs_app": "cds watch --open first_fs_app/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-fs_app_fiori_element": "cds watch --open fs_app_fiori_element/webapp/index.html?sap-ui-xx-viewCache=false"
     },
     "cds": {
         "requires": {
@@ -65,5 +66,8 @@
                 }
             }
         }
-    }
+    },
+    "sapux": [
+        "app/fs_app_fiori_element"
+    ]
 }
