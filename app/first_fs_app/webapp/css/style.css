@@ -1,1 +1,9 @@
 /* Enter your custom styles here */
+.buttonsHbox{
+    display: flex;
+    justify-content: right;
+    margin:10px;
+}
+.buttons{
+margin-left: 10px;
+}

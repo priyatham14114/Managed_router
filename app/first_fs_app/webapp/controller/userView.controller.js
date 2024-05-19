@@ -4,8 +4,8 @@ sap.ui.define([
     "sap/ui/model/FilterOperator",
     'sap/ui/model/json/JSONModel',
     'sap/m/Token',
-    "sap/ui/core/Fragment",
-    "sap/m/MessageBox"
+    "sap/m/MessageBox",
+    "sap/m/MessageToast"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
@@ -13,22 +13,23 @@ sap.ui.define([
 
 
 
-    function (Controller, Filter, FilterOperator, JSONModel, Token, Fragment, MessageBox) {
+    function (Controller, Filter, FilterOperator, JSONModel, Token, MessageBox, MessageToast) {
         "use strict";
 
         return Controller.extend("com.first_fs_app.controller.userView", {
             onInit: function () {
+                debugger
+                const oTable = this.getView().byId("idAuthorTable");
+                oTable.attachBrowserEvent("dblclick", this.onRowDoubleClick.bind(this));
 
                 const newAuthorModel = new JSONModel({
                     author: "",
                     bookName: "",
                     stock: "",
                     books_sold: "",
-                    published_on: "",
-                    phone: "",
+                    phone: ""
                 });
 
-                //  last change here.... 
                 this.getView().setModel(newAuthorModel, "newAuthorModel");
                 this.getOwnerComponent().getRouter().attachRoutePatternMatched(this.onAuthorListLoad, this);
 
@@ -59,9 +60,9 @@ sap.ui.define([
                 });
             },
 
-                //  Mutltiinput end
+            //  Mutltiinput end
 
-                
+
 
             onFilterClick: function (eve) {
                 debugger
@@ -115,21 +116,22 @@ sap.ui.define([
                     sPhone = oUserView.byId("idPhoneFilterValue").destroyTokens();
 
             },
-            // Routhin
-            onSelectAuthor: function (oEvent) {
-                const { ID, author } = oEvent.getSource().getSelectedItem().getBindingContext().getObject();
-
-                
+            // Routing by Double Click
+            onRowDoubleClick: function () {
+                debugger
+                // const { ID, author } = oEvent.getSelectedItem().getBindingContext().getObject();
+                // const { ID, author } = oEvent.getBindingContext().getObject();
+                var oSelected = this.byId("idAuthorTable").getSelectedItem();
+                var ID = oSelected.getBindingContext().getObject().ID;
 
                 const oRouter = this.getOwnerComponent().getRouter();
                 oRouter.navTo("RouteDetails", {
                     authorId: ID,
-                    authorname: author
+
                 })
 
             },
             // Opening of Dailogbox
-
 
             onCreateBtnPress: async function () {
 
@@ -142,44 +144,118 @@ sap.ui.define([
 
             },
 
-            //  closing of Dailogbox
-            onCloseDialog: function () {
+            //  closing of Dailogboxes
+            onCloseDialogCreateBox: function () {
 
-                if (this.oCreateAuthorDialog.isOpen()) {
-
-                    this.oCreateAuthorDialog.close()
-
+                    if (this.oCreateAuthorDialog.isOpen()) {
+                        this.oCreateAuthorDialog.close()
                 }
-            },
-            createData: async function(oModel, oPayload, sPath){
-                debugger;
-                return new Promise((resolve, reject) => {
-                    oModel.create(sPath,oPayload,{
-                        // refreshAfterChange: true,
-                        success: function(oSuccessData){
-                            resolve(oSuccessData);
-                        },
-                        error: function(oErrorData){
-                            reject(oErrorData)
-                        }
-                    })
-                })
+                
             },
             
-            onCreateAuthor: async function () {
+
+            onEdit: async function () {
+                // this.byId("idCreateButton").setVisible(false); // depricated
+                // this.getView().byId("idCreateAuthorDialog").setTitle("Update Author Details");
+                if (!this.oCreateAuthorDialog) {
+                    this.oCreateAuthorDialog = await this.loadFragment("createAuthor")
+                }
+                this.oCreateAuthorDialog.open();
+
+                debugger
+                var oSelected = this.byId("idAuthorTable").getSelectedItem();
+                if (oSelected) {
+                    // var oAuthor = oSelected.getBindingContext().getObject().ID;
+                    var oAuthorName = oSelected.getBindingContext().getObject().author
+                    var oAuthorBookName = oSelected.getBindingContext().getObject().bookName
+                    var oStock = oSelected.getBindingContext().getObject().stock
+                    var oBooksSold = oSelected.getBindingContext().getObject().books_sold
+                    var ophone = oSelected.getBindingContext().getObject().phone
+
+                    const newAuthorModel = new JSONModel({
+                        author: oAuthorName,
+                        bookName: oAuthorBookName,
+                        stock: oStock,
+                        books_sold: oBooksSold,
+                        phone: ophone
+                    });
+
+                    this.getView().setModel(newAuthorModel, "newAuthorModel");
+                }
+
+            },
+
+            //  Last change here...
+            onUpdateAuthor: async function () {
                 debugger
                 const oPayload = this.getView().getModel("newAuthorModel").getProperty("/"),
-                    oModel = this.getView().getModel("ModelV2");
+                    oModel = this.getView().getModel(),
+                    // oId = oPayload.getBindingContext().getObject().ID,
+                    sPath = "/Books",
+                    oBinding = oModel.bindList(sPath);                
                 try {
-                    await this.createData(oModel, oPayload, "/Books");
+                    await oBinding.push(oPayload);
                     this.getView().byId("idAuthorTable").getBinding("items").refresh();
                     this.oCreateAuthorDialog.close();
                 } catch (error) {
+                    // Handle error and close the dialog
+                    console.error("Error during create operation:", error);
                     this.oCreateAuthorDialog.close();
-                    MessageBox.error("Some technical Issue");
+                    MessageBox.error("Some technical issue occurred");
                 }
+            },
 
+            // creating Author
+            onCreateAuthor: async function () {
+                debugger
+                const oPayload = this.getView().getModel("newAuthorModel").getProperty("/"),
+                    oModel = this.getView().getModel(),
+                    oBinding = oModel.bindList("/Books");
+
+                // Define the context binding for creation
+                try {
+                    // Create a new entry using the v4 create method
+                    await oBinding.create(oPayload);
+
+                    // Refresh the binding of the table to reflect new data
+                    this.getView().byId("idAuthorTable").getBinding("items").refresh();
+
+                    // Close the create author dialog
+                    this.oCreateAuthorDialog.close();
+                } catch (error) {
+                    // Handle error and close the dialog
+                    console.error("Error during create operation:", error);
+                    this.oCreateAuthorDialog.close();
+                    MessageBox.error("Some technical issue occurred");
+                }
+            },
+            // last change here work with delete by checkbox
+
+            onCheckDelete: function (oEvent) {
+                debugger;
+                var oSelected = this.byId("idAuthorTable").getSelectedItem();
+                if (oSelected) {
+                    var oAuthorName = oSelected.getBindingContext().getObject().author;
+
+                    oSelected.getBindingContext().delete("$auto").then(function () {
+                        MessageToast.show(oAuthorName + " SuccessFully Deleted");
+                    },
+                        function (oError) {
+                            MessageToast.show("Deletion Error: ", oError);
+                        });
+                    this.getView().byId("idAuthorTable").getBinding("items").refresh();
+
+                } else {
+                    MessageToast.show("Please Select a Row to Delete");
+                }
+            },
+
+            //  Toast with check box
+            onCheck: function () {
+                debugger
+                var demoToast = this.getView().byId("demoToast");
+                demoToast.setText("Selected");
+                demoToast.show();
             }
-
         });
     });

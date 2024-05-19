@@ -10,22 +10,12 @@
         contentWidth="30%"
         title="Create Author"
     >
-        <beginButton>
-            <Button
-                id="idCreateButton"
-                text="Create"
-                press="onCreateAuthor"
-                type="Success"
-            />
+        <!-- <beginButton>
+         </beginButton>
+        <beginButton>      
         </beginButton>
         <endButton>
-            <Button
-                id="idCancelButton"
-                text="Cancel"
-                press="onCloseDialog"
-                type="Negative"
-            />
-        </endButton>
+        </endButton> -->
         <content>
             <form:SimpleForm
                 id="idBooksDetailsForm"
@@ -77,14 +67,14 @@
                     id="idbooks_soldInput"
                     value="{newAuthorModel>/books_sold}"
                 />
-                <Label
+                <!-- <Label
                     id="idPublishedOnLabel"
                     text="Published On"
                 />
                 <Input
                     id="idPublishedOnInput"
                     value="{newAuthorModel>/published_on}"
-                />
+                /> -->
                 <Label
                     id="idPhoneLabel"
                     text="Phone"
@@ -95,5 +85,31 @@
                 />
             </form:SimpleForm>
         </content>
+        <HBox
+            id="idHboxCreate"
+            class="buttonsHbox"
+        >
+            <Button
+                id="idUpdateButton"
+                class="buttons"
+                text="Update"
+                press="onUpdateAuthor"
+                type="Default"
+            />
+            <Button
+                id="idCreateButton"
+                class="buttons"
+                text="Create"
+                press="onCreateAuthor"
+                type="Success"
+            />
+            <Button
+                id="idCancelButtonCreate"
+                class="buttons"
+                text="Cancel"
+                press="onCloseDialogCreateBox"
+                type="Negative"
+            />
+        </HBox>
     </Dialog>
 </core:FragmentDefinition>

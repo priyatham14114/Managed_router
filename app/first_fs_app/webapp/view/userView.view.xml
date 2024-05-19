@@ -6,7 +6,14 @@
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"
+    xmlns:ui5="sap.ui.webc.main"
 >
+    <ui5:Toast
+        id="demoToast"
+        duration="2000"
+        height="30%"
+        width="30%"
+    />
     <f:DynamicPage
         id="booksDataPage"
         headerExpanded="true"
@@ -148,14 +155,14 @@
                 </HBox>
             </f:DynamicPageHeader>
         </f:header>
+
         <f:content>
+            <!-- selectionChange="onSelectAuthor" -->
             <Table
                 id="idAuthorTable"
                 mode="SingleSelectMaster"
                 alternateRowColors="true"
                 items="{/Books}"
-                selectionChange="onSelectAuthor"
-                
             >
                 <headerToolbar>
                     <OverflowToolbar id="idBooksTableHeader">
@@ -165,7 +172,15 @@
                         />
                         <ToolbarSpacer id="idTableHeaderSpacer" />
                         <Button
+                            id="idBtnEdit"
+                            text="Edit"
+                            icon="sap-icon://edit"
+                            type="Emphasized"
+                            press="onEdit"
+                        />
+                        <Button
                             id="idBtnCreate"
+                            text="Add"
                             icon="sap-icon://add"
                             tooltip="Add a Record"
                             type="Success"
@@ -173,13 +188,21 @@
                         />
                         <Button
                             id="idBtnDelete"
+                            press="onCheckDelete"
                             icon="sap-icon://delete"
                             tooltip="Delete Record"
+                            text="Delete"
                             type="Negative"
                         />
                     </OverflowToolbar>
                 </headerToolbar>
                 <columns>
+                    <Column id="idAuthorCol0">
+                        <Title
+                            id="idCheckBoxCol"
+                            text="Select"
+                        />
+                    </Column>
                     <Column id="idAuthorCol">
                         <Title
                             id="idAuthorColTitle"
@@ -212,7 +235,15 @@
                     </Column>
                 </columns>
                 <items>
-                    <ColumnListItem id="idBooksTableColListItem" type="Navigation">
+                    <ColumnListItem
+                        id="idBooksTableColListItem"
+                        type="Navigation"
+                    >
+                        <ui5:CheckBox
+                            id="idCheckBox"
+                            text=""
+                            change="onCheck"
+                        />
                         <cells>
                             <Text
                                 id="idAuthorColValue"

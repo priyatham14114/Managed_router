@@ -35,23 +35,24 @@
                 </uxap:expandedContent>
 
                 <uxap:actions>
-                    <m:Button
+                   
+                    <!-- <m:Button
                         id="idBtnEdit"
                         text="Edit"
                         type="Emphasized"
                         press="onEdit"
-                    />
+                    /> -->
                     <m:Button
                         id="idBtnDelete"
                         type="Transparent"
                         text="Delete"
                         press="onDeleteAuthor"
                     />
-                    <m:Button
+                    <!-- <m:Button
                         id="idBtnCopy"
                         type="Transparent"
                         text="Copy"
-                    />
+                    /> -->
                 </uxap:actions>
             </uxap:ObjectPageDynamicHeaderTitle>
         </uxap:headerTitle>

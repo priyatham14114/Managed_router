@@ -23,14 +23,6 @@
           "annotations": [],
           "odataVersion": "4.0"
         }
-      },
-      "mainServiceV2": {
-        "uri": "/v2/CatalogSrv/",
-        "type": "OData",
-        "settings": {
-          "annotations": [],
-          "odataVersion": "2.0"
-        }
       }
     },
     "crossNavigation": {
@@ -98,17 +90,8 @@
           "autoExpandSelect": true,
           "earlyRequests": true
         }
-      },
-      "ModelV2": {
-        "dataSource": "mainServiceV2",
-        "preload": true,
-        "settings": {
-          "synchronizationMode": "None",
-          "operationMode": "Server",
-          "autoExpandSelect": true,
-          "earlyRequests": true
-        }
       }
+      
     },
     "resources": {
       "css": [

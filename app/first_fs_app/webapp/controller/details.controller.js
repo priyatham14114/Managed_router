@@ -1,9 +1,11 @@
 sap.ui.define(
   [
     "./baseController",
-    "sap/m/MessageBox"
+    "sap/m/MessageBox",
+    "sap/m/MessageToast"
+
   ],
-  function (BaseController, MessageBox) {
+  function (BaseController, MessageToast, MessageBox) {
     "use strict";
 
     return BaseController.extend("com.app.first_fs_app.controller.details", {
@@ -13,7 +15,7 @@ sap.ui.define(
 
       },
       onAuthorDetailsLoad: function (oEvent) {
-        // debugger
+        
         const { authorId } = oEvent.getParameter("arguments");
         this.ID = authorId;
         const sRouterName = oEvent.getParameter("name");
@@ -23,18 +25,31 @@ sap.ui.define(
           expand: 'address,personalInfo'
         });
       },
-      // @ts-ignore
-      onDeleteAuthor: async function () {
-        debugger;
-        const oModel = this.getView().getModel("ModelV2");
-        try {
-         await this.deleteData(oModel,"/Books",this.ID);
-          this.getRouter().navTo("RouteruserView");
-        }
-        catch (error) {
-          MessageBox.error("Some thechnical Issue");
-        }
-      }
+
+      // last change here 17/05/2024
+      // onDeleteAuthor: function () {
+      // debugger
+      //   try{
+      //     const oModel = this.getView().getModel(),
+      //     id = this.ID,
+      //     sPath = `/Books(${id})`,
+      //     oBinding = oModel.bindList("/Books");
+
+      //     oBinding.delete(sPath,"$auto").then(function () {
+      //       MessageToast.show(id + " SuccessFully Deleted");
+      //       this.getRouter().navTo("RouteruserView");
+      //       this.getView().byId("idAuthorTable").getBinding("items").refresh();
+            
+      //     })
+      //   }
+      //     catch(error){
+            
+      //         MessageToast.show("Deletion Error: ", error);
+            
+
+      //     }
+
+      //   }
     });
   }
 );
